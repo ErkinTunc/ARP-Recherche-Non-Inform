@@ -30,8 +30,13 @@ Les Developeurs: Erkin Tunc BOYA | Semih DOYNUK | Karam ELNASORY
 Cette distinction est utile car elle simplifie la complexité du problème et nous permet de le résoudre sans soucier de détails qui complique le calcule des solutions sans forcément avoir plus de valeur ajouter à la solution. Elle permet de faire le traitement. Enplus, si on rancrontre une problem simulaire on peut appliquer une solution qu’on a deja utilise avant facilement.
 
 
+
+
 ## Ex3 
 <img width="933" height="712" alt="image" src="https://github.com/user-attachments/assets/753e19d0-cdbf-4680-aed1-711181937ef2" />
 
+
+
+<Graph indexType="custom" height="400" width="400" nodes={[{label:"3,3,G",center:{x:62.6,y:131.1}},{label:"1,3,D",center:{x:168.1,y:160.5}},{label:"2,3,G",center:{x:248.6,y:83.2}},{label:"0,3,D",center:{x:351.3,y:119.5}},{label:"1,3,G",center:{x:373.2,y:227}},{label:"1,1,D",center:{x:268.1,y:186.9}},{label:"2,2,G",center:{x:185.3,y:261.3}},{label:"2,0,D",center:{x:288,y:284.8}},{label:"3,0,G",center:{x:325.4,y:382.8}},{label:"1,0,D",center:{x:215.8,y:364.1}},{label:"2,0,G",center:{x:109.5,y:338.8}},{label:"0,0,D",center:{x:84.4,y:233.1}},{label:"2,2,D",center:{x:143.9,y:56.8}}]} edges={[{source:0,target:1},{source:1,target:2},{source:2,target:3},{source:3,target:4},{source:4,target:5},{source:5,target:6},{source:6,target:7},{source:7,target:8},{source:8,target:9},{source:9,target:10},{source:10,target:11},{source:0,target:12},{source:12,target:2},{source:3,target:4},{source:4,target:5},{source:5,target:6},{source:6,target:7},{source:8,target:9},{source:9,target:10},{source:10,target:11}]} />
 ---
 
