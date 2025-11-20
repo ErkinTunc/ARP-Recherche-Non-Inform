@@ -29,5 +29,9 @@ Les Developeurs: Erkin Tunc BOYA | Semih DOYNUK | Karam ELNASORY
 
 Cette distinction est utile car elle simplifie la complexité du problème et nous permet de le résoudre sans soucier de détails qui complique le calcule des solutions sans forcément avoir plus de valeur ajouter à la solution. Elle permet de faire le traitement. Enplus, si on rancrontre une problem simulaire on peut appliquer une solution qu’on a deja utilise avant facilement.
 
+
+## Ex3 
+<img width="933" height="712" alt="image" src="https://github.com/user-attachments/assets/753e19d0-cdbf-4680-aed1-711181937ef2" />
+
 ---
 
