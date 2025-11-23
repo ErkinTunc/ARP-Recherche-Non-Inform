@@ -19,9 +19,10 @@ public class State {
     public int getMLeft() {
         return mLeft;
     }
-    public boolean isBoatLeft() {
+    public boolean isBoatLeft()
+    {
         return boatLeft;
-
+    }
 
     @Override
     public boolean equals(Object o) {
