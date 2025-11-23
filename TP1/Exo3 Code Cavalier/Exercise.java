@@ -1,5 +1,5 @@
 /**
- * Class Exercise act as an entry point for the programme 
+ * Class Exercise act as an entry point for the programme
  */
 
 public class Exercise

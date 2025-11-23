@@ -32,10 +32,10 @@ public class KnightsTourProblem
     /** Retourne la liste des actions */
     public List<Action> actions()
     {
-        /* Actions 
+        /* Actions
 
-        *HG = (+2, +1)  
-        HD = (+2, -1) 
+        *HG = (+2, +1)
+        HD = (+2, -1)
         DH = (+1, +2)
         DB = (-1, +2)
         BD = (-2, +1)
@@ -68,7 +68,10 @@ public class KnightsTourProblem
     {
         int totalCells = NB_ROWS * NB_COLS;
         // On vérifie si on a visité toutes les cases (en prenant )
-        return state.getScore() == totalCells;
+
+        return state.getScore() == totalCells ; // Pour un tour ouvert
+
+        // return state.getScore() == totalCells && state.getKnight().equals(new Position()); // Pour un tour fermé
     }
 
     /** Retourne l'état successeur après avoir appliqué une action */

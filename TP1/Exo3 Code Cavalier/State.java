@@ -1,6 +1,6 @@
 public class State {
     /**
-    Un état est décrit par une grille NxM d'entiers. 
+    Un état est décrit par une grille NxM d'entiers.
     O indique le fait que la case n'a pas encore été visité.
     1 indique le fait que la case a déjà été visité
     2 indique le fait que le cavalier se trouve sur la case
@@ -67,7 +67,7 @@ public class State {
         
         for (int i = 0; i < NB_LIGNES; i++) {
             for (int j = 0; j < NB_COLONNES; j++) {
-                description.append(this.board[i][j]).append(" ");               
+                description.append(this.board[i][j]).append(" ");
             }
             description.append("\n");
         }

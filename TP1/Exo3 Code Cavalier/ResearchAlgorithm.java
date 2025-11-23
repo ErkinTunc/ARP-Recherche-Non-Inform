@@ -10,12 +10,12 @@ public class ResearchAlgorithm {
         Node root = new Node(problem.initialState(), null, null);
         frontier.add(root);
         
-        while(!frontier.isEmpty())
+        while ( ! frontier.isEmpty() )
         {
             Node currentNode = frontier.remove(0);
             counter += 1;
             
-            if (problem.isGoalState(currentNode.getState()))
+            if (problem.isGoalState(currentNode.getState())) // Condition d'arrêt qu'on va exploiter pour faire un tour fermé
             {
                 System.out.println("Found a solution after evaluating " + counter + " nodes.");
                 return currentNode;
