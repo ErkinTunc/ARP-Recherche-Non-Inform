@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Node {
 
-    private final State s;
-    private final Node p;
-    private final Action a;
+    private final State s; // State of the model
+    private final Node p; // Parent node
+    private final Action a; // Action that led to this state from parent
 
     public Node(State state, Node node, Action action) {
         this.s = state;
