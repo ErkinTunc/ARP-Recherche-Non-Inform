@@ -7,8 +7,8 @@ public enum Action {
     M2(0, 2),
     CM(1, 1);
 
-    public final int dc;
-    public final int dm;
+    public final int dc; // Delta Cannibale represents the change in the number of Cannibales
+    public final int dm; // Delta Missionaire represents the change in the number of missionaires
 
     Action(int dc, int dm) {
         this.dc = dc;
