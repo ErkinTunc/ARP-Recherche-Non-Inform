@@ -1,4 +1,4 @@
-package Ex4;
+
 /**
  * 
  * @author Semih DOYNUK
