@@ -35,7 +35,11 @@ public class MCB_Problem {
     public boolean isGoalState(State state) {
         return state.equals(goalState); // TODO : should we redefine .equals() in State class ?
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 06c4056e5fb1ed7404c58c4bb6e57cb8da4d074b
     public State succession(State state, Action action)
     {
         int c = state.getCLeft();
@@ -60,10 +64,4 @@ public class MCB_Problem {
         }
         return null;
     }
-=======
-    //     for (int i = 0; i < Action.values().length; i++) {}
-    // }
-
-    //public State succession(State state, Action action) {}
->>>>>>> a52afd60381d23c9e0100ae1b82ef36ec0a1c69e:TP1/Ex4/MCB_Problem.java
 }
