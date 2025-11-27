@@ -36,32 +36,6 @@ public class MCB_Problem {
         return state.equals(goalState); // TODO : should we redefine .equals() in State class ?
     }
 
-<<<<<<< HEAD:TP1 & TP2/Ex4/MCB_Problem.java
-    /**
-     * @deprecated 
-     * @param state
-     * @return
-     */
-    public Action[] getActions(State state) {
-        // Want to create a very generic method to get possible actions from a given state
-=======
-    // public Action[] getActions(State state) {
-    //     // Want to create a very generic method to get possible actions from a given state
->>>>>>> a52afd60381d23c9e0100ae1b82ef36ec0a1c69e:TP1/Ex4/MCB_Problem.java
-
-    //     Action[] possibleActions = new Action[Action.values().length];
-
-    //     if (state.isBoatLeft()) {} else {
-    //         // Boat is on the right side
-    //     }
-
-<<<<<<< HEAD:TP1 & TP2/Ex4/MCB_Problem.java
-        for (int i = 0; i < Action.values().length; i++) {;
-            possibleActions[i] = Action.values()[i];
-        }
-        return possibleActions;
-    }
-
     public State succession(State state, Action action)
     {
         int c = state.getCLeft();
@@ -86,10 +60,4 @@ public class MCB_Problem {
         }
         return null;
     }
-=======
-    //     for (int i = 0; i < Action.values().length; i++) {}
-    // }
-
-    //public State succession(State state, Action action) {}
->>>>>>> a52afd60381d23c9e0100ae1b82ef36ec0a1c69e:TP1/Ex4/MCB_Problem.java
 }
