@@ -7,29 +7,30 @@ package Ex4;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ResearchAlgorithm
-{
-    public static Node search(MCB_Problem problem)
-    {
+public class ResearchAlgorithm {
+
+    public static Node search(MCB_Problem problem) {
         int counter = 0;
 
         List<Node> frontier = new LinkedList<>();
         Node root = new Node(problem.initialState(), null, null);
 
         frontier.add(root);
-        
-        while ( ! frontier.isEmpty() )
-        {
+
+        while (!frontier.isEmpty()) {
             Node currentNode = frontier.remove(0);
             counter += 1;
-            
-            if (problem.isGoalState(currentNode.getState())) // Condition d'arrêt qu'on va exploiter pour faire un tour fermé
-            {
-                System.out.println("Found a solution after evaluating " + counter + " nodes.");
+
+            if (
+                problem.isGoalState(currentNode.getState()) // Condition d'arrêt qu'on va exploiter pour faire un tour fermé
+            ) {
+                System.out.println(
+                    "Found a solution after evaluating " + counter + " nodes."
+                );
                 return currentNode;
             }
 
-            frontier.addAll(currentNode.expand(problem)); // TODO : is the reference to problem needed ?
+            frontier.addAll(currentNode.expand()); // TODO : is the reference to problem needed ?
         }
         return null;
     }

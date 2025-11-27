@@ -1,7 +1,7 @@
 package Ex4;
 
-public class MCB_Problem
-{
+public class MCB_Problem {
+
     // Attributes
     int c_num = 3; // Number of Cannibales
     int m_num = 3; // Number of Missionaires
@@ -12,16 +12,14 @@ public class MCB_Problem
     protected State initialState;
     protected State goalState;
 
-    public MCB_Problem(State initialState, State goalState)
-    {
+    public MCB_Problem(State initialState, State goalState) {
         this.initialState = initialState;
         this.goalState = goalState;
     }
 
     // TODO : Maybe create a custom constructor for custom number of cannibales, missionaires and boats
 
-    public State initialState()
-    {
+    public State initialState() {
         return initialState;
     }
 
@@ -29,36 +27,21 @@ public class MCB_Problem
         return goalState;
     }
 
-    public  boolean isGoalState(State state)
-    {
+    public boolean isGoalState(State state) {
         return state.equals(goalState); // TODO : should we redefine .equals() in State class ?
     }
-    
-    public  Action[] getActions(State state)
-    {
+
+    public Action[] getActions(State state) {
         // Want to create a very generic method to get possible actions from a given state
-        
-        Action[] possibleActions = new Action[Action.values().length ];
-        
-        if ( state.isBoatLeft()  )
-        {
-            // Boat is on the left side
-        }
-        else
-        {
+
+        Action[] possibleActions = new Action[Action.values().length];
+
+        if (state.isBoatLeft()) {} else {
             // Boat is on the right side
         }
 
-
-
-        for (int i = 0 ; i < Action.values().length; i++)
-        {
-
-        }
+        for (int i = 0; i < Action.values().length; i++) {}
     }
 
-    public  State succession ( State state, Action action )
-    {
-        
-    }
+    public State succession(State state, Action action) {}
 }
