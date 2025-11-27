@@ -1,4 +1,4 @@
-package EX4;
+package Ex4;
 
 import java.util.LinkedList;
 import java.util.List;

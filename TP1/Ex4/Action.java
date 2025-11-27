@@ -1,6 +1,11 @@
-package EX4;
+package Ex4;
+/**
+ * 
+ * @author Semih DOYNUK
+ */
 
-public enum Action {
+public enum Action
+{
     C1(1, 0),
     C2(2, 0),
     M1(0, 1),

@@ -1,3 +1,6 @@
-package EX4;
+package Ex4;
 
-public class Main {}
+public class Main
+{
+
+}

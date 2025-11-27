@@ -1,11 +1,10 @@
-package EX4;
+package Ex4;
 
 
 public class State {
     int cLeft;
     int mLeft;
     boolean boatLeft;
-
 
     public State(int cLeft, int mLeft, boolean boatLeft) {
         this.cLeft = cLeft;
