@@ -30,7 +30,7 @@ public class ResearchAlgorithm {
                 return currentNode;
             }
 
-            frontier.addAll(currentNode.expand()); // TODO : is the reference to problem needed ?
+            frontier.addAll(currentNode.expand());
         }
         return null;
     }
