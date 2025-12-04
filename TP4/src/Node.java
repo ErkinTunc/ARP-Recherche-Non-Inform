@@ -15,10 +15,23 @@ public class Node
      * 
      * @return State
      */
-    public Node (State state)
+    public Node (State state, Node parent)
     {
         this.state = state ;
+        this.parent = parent ;
+
+        if ( parent == null )
+        {
+            this.g = 0 ;
+        }
+        else
+        {
+            this.g = parent.g() + parent.state().currenCity().coordonates().distanceTo( state.currenCity().coordonates() ) ;
+        }
+
+        // this.h = state.currenCity().coordonates().distanceTo( state.goalCity().coordonates() ) ;
     }
+
 
     // Getters
 

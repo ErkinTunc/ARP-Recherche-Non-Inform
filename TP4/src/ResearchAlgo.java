@@ -10,7 +10,7 @@ public class ResearchAlgo
     {
         // Initialize the stack with the initial state
         Stack<Node> stack = new Stack<>();
-        stack.push(new Node(problem.initialState()));
+        stack.push( new Node(problem.initialState() , null) );
 
         while (!stack.isEmpty())
         {
@@ -26,8 +26,8 @@ public class ResearchAlgo
             for (City city : currentNode.state().actions(problem.cities()))
             {
                 State newState = new State(city, currentNode.state().visitedCities());
-                Node childNode = new Node(newState);
-                childNode.setParent(currentNode);
+
+                Node childNode = new Node(newState, currentNode);
                 stack.push(childNode);
             }
         }
