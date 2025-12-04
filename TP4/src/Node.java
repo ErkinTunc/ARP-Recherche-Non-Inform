@@ -1,3 +1,4 @@
+package src ;
 
 import java.util.ArrayList;
 
@@ -65,7 +66,7 @@ public class Node
     {
         ArrayList<City> res = new ArrayList<>() ;
         City currentNode = this ;
-        
+
         while ( currentNode != null )
         {
             res.add(0, currentNode.state.currenCity() ) ;
@@ -73,6 +74,4 @@ public class Node
         }
         return res ;
     }
-
-
 }
