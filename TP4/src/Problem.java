@@ -22,7 +22,7 @@ public class Problem
      */
     public State initialState()
     {
-
+        return new State(this.startCity);
     }
 
     /**
@@ -41,6 +41,7 @@ public class Problem
      */
     public boolean isGoalState(State state)
     {
+        if (state.visitedCities() )
     }
     
     /**
