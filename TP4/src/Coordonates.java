@@ -8,6 +8,8 @@ package src ;
 
 public class Coordonates
 {
+    /*
+     */
     private int x;
     private int y;
 

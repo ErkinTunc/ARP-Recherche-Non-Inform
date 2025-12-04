@@ -1,8 +1,14 @@
+package src ;
+
+
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Kruskal {
+public class Kruskal
+
+{
 
     public static double run(int nbVertices, List<Edge> edges) {
         // Sort edges by weight
@@ -56,4 +62,5 @@ class DisjointSet {
             }
         }
     }
+}
 }
