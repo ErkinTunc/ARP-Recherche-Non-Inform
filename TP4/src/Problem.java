@@ -1,17 +1,18 @@
 
 package src ;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 /**
  * 
  */
 public class Problem
 {
-    private List<City> cities ;
+    private ArrayList<City> cities ;
     private City startCity ;
     
-    public Problem ( List<City> cities , City startCity )
+    public Problem ( ArrayList<City> cities , City startCity )
     {
         this.cities = cities ;
         this.startCity = startCity ;
@@ -23,7 +24,16 @@ public class Problem
     public State initialState()
     {
         return new State(this.startCity);
-    }    
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public ArrayList<City> cities()
+    {
+        return new ArrayList<>(this.cities);
+    }
 
     /**
      * 

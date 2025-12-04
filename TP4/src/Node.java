@@ -57,6 +57,15 @@ public class Node
         return this.parent ;
     }
 
+    /**
+     * 
+     * @return
+     */
+    public State state ()
+    {
+        return this.state ;
+    }
+
 
     /**
      * 
@@ -65,7 +74,7 @@ public class Node
     public ArrayList<City> path ()
     {
         ArrayList<City> res = new ArrayList<>() ;
-        City currentNode = this ;
+        Node currentNode = this ;
 
         while ( currentNode != null )
         {
