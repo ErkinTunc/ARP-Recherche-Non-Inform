@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # ARP-Recherche-Non-Inform
 
 Travaux pratiques du cours Algorithmes pour la Résolution de Problèmes (L3).
@@ -30,16 +29,3 @@ Rapport : [Rapport de TP3](https://github.com/ErkinTunc/ARP-Recherche-Non-Inform
 Chemin Hamiltonien, TSP, heuristique MST, A\*, Branch and Bound.
 
 Rapport : [Rapport de TP4](https://github.com/ErkinTunc/ARP-Recherche-Non-Inform/blob/main/Rapports/TP4.md)
-=======
-# ARP-Recherche-Non-Inform 
-Des rapports sur les TPs de Algorithmes pour la Résolution de Problèmes L3
-
-## Authors
-
-Erkin Tunc Boya · Semih DOYNUK · Karam ELNASORY
-
-Université Clermont Auvergne  
-
-Algorithmes pour la Résolution de Problèmes 
-
->>>>>>> da24d80 (Update file permissions and refactor Knight's Tour implementation)
