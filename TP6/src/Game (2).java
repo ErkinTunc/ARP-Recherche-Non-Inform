@@ -26,8 +26,6 @@ public class Game implements Serializable
 
     // private final ArrayList< User > players ; // IDEA
 
-    private final Matrix matrix ; // final ? 
-
     private final GameConditions gameConditions ; // TODO Standarized the usage of this class
 
     /**
@@ -42,7 +40,6 @@ public class Game implements Serializable
         this.player2 = player2 ;
 
         this.gameConditions = new GameConditions() ; // Default game conditions
-        this.matrix = new Matrix(this.gameConditions) ;
     }
 
     /**
@@ -53,10 +50,9 @@ public class Game implements Serializable
     {
         // TODO : TO BE FINISHED
         this.player1 = new Human(gameConditions.playerScore()) ;
-        this.player2 = new Computer(Color.RED) ;
+
 
         this.gameConditions = gameConditions ; // Default game conditions
-        this.matrix = new Matrix(this.gameConditions) ;
     }
     
     /**
