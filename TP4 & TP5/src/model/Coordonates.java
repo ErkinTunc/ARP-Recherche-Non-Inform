@@ -1,3 +1,15 @@
+/**
+ * Coordonates class representing a point in a 2D space.
+ * It contains the x and y coordinates.
+ * 
+ * class Coordonates {
+    -x: double
+    -y: double
+    +x(): double
+    +y(): double
+    +distanceTo(other: Coordonates): double
+  }
+ */
 package model;
 
 /**

@@ -1,60 +1,88 @@
+/**
+ * State class representing the current state in the search problem.
+ * 
+ * class State {
+    - currentCity: City
+    - visitedCities: ArrayList<City>
+    - g: double
+    + currentCity(): City
+    + visitedCities(): ArrayList<City>
+    + g(): double
+    + actions(cities: ArrayList<City>): ArrayList<City>
+    + successor(next: City): State
+  }
+ */
+
 package model;
 
 import java.util.ArrayList;
 
 public class State {
-    private City currentCity; // Current city in the state
-    private double cost; // Cost to reach this state
+    private final City currentCity; // current city
+    private final ArrayList<City> visitedCities; // visited list
+    private final ArrayList<Integer> path; // city ids (or indexes)
+    private final double g; // cost so far
 
-    private ArrayList<City> visitedCities; // List of visited cities
-    private ArrayList<Integer> path; // Path taken to reach this state
-
-    private double g; // g :cout du départ jusqu’a ici (somme des distance parcours)
-
-    public State(City currentCity, ArrayList<City> visitedCities, ArrayList<Integer> path, double cost, double g) {
+    public State(City currentCity, ArrayList<City> visitedCities, ArrayList<Integer> path, double g) {
         this.currentCity = currentCity;
         this.visitedCities = visitedCities;
-        this.path = new ArrayList<>();
-        this.cost = cost;
+        this.path = path;
         this.g = g;
     }
 
-    public State(City currentCity) {
-        this.currentCity = currentCity;
-        this.visitedCities = new java.util.ArrayList<>();
-        this.visitedCities.add(currentCity);
+    public State(City startCity) {
+        this.currentCity = startCity;
+
+        this.visitedCities = new ArrayList<>();
+        this.visitedCities.add(startCity);
+
         this.path = new ArrayList<>();
-        this.cost = 0;
-        this.g = 0;
+        this.path.add(startCity.id()); // or index, but be consistent
+
+        this.g = 0.0;
     }
 
-    // -------------- Getters --------------
+    // ----- Getters -----
+    public City currentCity() {
+        return currentCity;
+    }
 
     public ArrayList<City> visitedCities() {
-        return this.visitedCities;
+        return visitedCities;
     }
 
-    public City currentCity() {
-        return this.currentCity;
+    public ArrayList<Integer> path() {
+        return path;
     }
 
-    public ArrayList<City> actions(ArrayList<City> cities) {
-        ArrayList<City> res = new ArrayList<>(cities);
-        res.removeAll(this.visitedCities);
-        res.remove(currentCity);
+    public double g() {
+        return g;
+    }
+
+    // ----- Actions -----
+    public ArrayList<City> actions(ArrayList<City> allCities) {
+        ArrayList<City> res = new ArrayList<>();
+        for (City c : allCities) {
+            if (!visitedCities.contains(c)) { // still O(n) per check, but simpler
+                res.add(c);
+            }
+        }
         return res;
     }
 
-    // -------------- Methods --------------
+    // ----- Successor -----
+    public State successor(City cityToVisit, double stepCost) {
+        ArrayList<City> newVisited = new ArrayList<>(visitedCities);
+        newVisited.add(cityToVisit);
 
-    public State succession(State state, City cityToVisit, ArrayList<Integer> newPath, double stepCost) {
-        ArrayList<City> newVisitedCities = new ArrayList<>(state.visitedCities());
-        newVisitedCities.add(cityToVisit);
-        return new State(cityToVisit, newVisitedCities, newPath, state.cost + stepCost , state.g + stepCost);
+        ArrayList<Integer> newPath = new ArrayList<>(path);
+        newPath.add(cityToVisit.id());
+
+        return new State(cityToVisit, newVisited, newPath, g + stepCost);
     }
 
     @Override
     public String toString() {
-        return "Current City: " + this.currentCity.id() + ", Visited Cities: " + this.visitedCities.size();
+        return "Current City: " + currentCity.id() + ", Visited: " + visitedCities.size() + ", g=" + g;
     }
 }

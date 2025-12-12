@@ -1,3 +1,7 @@
+/**
+ * ResearchAlgo class implementing Depth-First Search (DFS) algorithm.
+ */
+
 package search;
 
 import app.Problem;
@@ -27,7 +31,12 @@ public class ResearchAlgo {
 
             // Expand the current node and add its children to the stack
             for (City city : currentNode.state().actions(problem.cities())) {
-                State newState = new State(city, currentNode.state().visitedCities());
+                State s = currentNode.state();
+
+                double stepCost = s.currentCity().coordonates()
+                        .distanceTo(city.coordonates());
+
+                State newState = s.successor(city, stepCost);
 
                 Node childNode = new Node(newState, currentNode);
                 stack.push(childNode);

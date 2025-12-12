@@ -1,6 +1,9 @@
+/**
+ * Main class to run the search algorithm on the city problem.
+ */
+
 package app;
 
-import model.City;
 import search.ResearchAlgo;
 
 import model.*;
@@ -21,22 +24,37 @@ import algorithm.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        File file = new File("src/us_capitals.txt");
-        ArrayList<City> cities = City.readCitiesFromFile(file);
+
+        // -------------- Problem Definition --------------
+        int startCityId = 0; // Set the starting city ID
+        int maxCitiesLoaded = 10; // Set the maximum number of cities to load
+
+        // -------------- Load Cities from File --------------
+        File file = new File("us_capitals.txt");
+        ArrayList<City> cities = City.readCitiesFromFile(file, maxCitiesLoaded);
         System.out.println("Number of cities loaded: " + cities.size());
 
-        City startCity = cities.get(0); // Assuming the first city is the starting point
+        // -------------- Problem Setup and Solution Search --------------
+        City startCity = cities.get(startCityId); // Assuming the first city is the starting point
         Problem problem = new Problem(cities, startCity);
 
         Node solutionNode = ResearchAlgo.depthFirstSearch(problem);
         if (solutionNode != null) {
             System.out.println("Solution found!");
-            ArrayList<City> path = solutionNode.path();
-            for (City city : path) {
-                System.out.println(city.name() + " at " + city.coordonates().x() + ", " + city.coordonates().y());
+
+            System.out.println("Cost of solution: " + solutionNode.state().g());
+
+            System.out.println("Path to solution:");
+            for (City city : solutionNode.state().visitedCities()) {
+                System.out.println(
+                        city.id() + " at " +
+                                city.coordonates().x() + ", " +
+                                city.coordonates().y());
             }
         } else {
             System.out.println("No solution found.");

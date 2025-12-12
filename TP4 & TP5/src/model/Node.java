@@ -1,3 +1,16 @@
+/**
+ * Node class representing a state in the search space.
+ * 
+ * class Node {
+    - state: State
+    - parent: Node
+    + state(): State
+    + parent(): Node
+    + extractPath(): ArrayList<City>
+    + g(): double
+  }
+ */
+
 package model;
 
 import java.util.ArrayList;
