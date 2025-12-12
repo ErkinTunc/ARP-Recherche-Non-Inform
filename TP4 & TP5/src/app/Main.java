@@ -1,3 +1,7 @@
+/**
+ * Main class to run the search algorithm on the city problem.
+ */
+
 package app;
 
 import search.ResearchAlgo;
@@ -20,6 +24,8 @@ import algorithm.*;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {

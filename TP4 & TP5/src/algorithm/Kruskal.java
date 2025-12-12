@@ -1,3 +1,7 @@
+/**
+ * Kruskal's algorithm implementation to find the Minimum Spanning Tree (MST)
+ */
+
 package algorithm;
 
 import model.City;

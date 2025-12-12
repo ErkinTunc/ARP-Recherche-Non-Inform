@@ -1,3 +1,15 @@
+/**
+ * Problem class representing the TSP problem.
+ * 
+ * class Problem {
+    -cities: ArrayList<City>
+    -startCity: City
+    +cities(): ArrayList<City>
+    +initialState(): State
+    +isGoalState(s: State): boolean
+  }
+ */
+
 package app;
 
 import model.City;

@@ -1,3 +1,16 @@
+/**
+ * City class representing a city with an ID and coordinates.
+ * 
+ * class City {
+    - id: int
+    - coordonates: Coordonates
+    + id(): int
+    + coordonates(): Coordonates
+    + distanceTo(other: City): double
+    {static} + readCitiesFromFile(file, n): ArrayList<City>
+  }
+ */
+
 package model;
 
 import java.io.File;

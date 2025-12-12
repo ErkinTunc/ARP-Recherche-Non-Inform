@@ -1,3 +1,18 @@
+/**
+ * State class representing the current state in the search problem.
+ * 
+ * class State {
+    - currentCity: City
+    - visitedCities: ArrayList<City>
+    - g: double
+    + currentCity(): City
+    + visitedCities(): ArrayList<City>
+    + g(): double
+    + actions(cities: ArrayList<City>): ArrayList<City>
+    + successor(next: City): State
+  }
+ */
+
 package model;
 
 import java.util.ArrayList;

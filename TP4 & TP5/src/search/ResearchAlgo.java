@@ -1,3 +1,7 @@
+/**
+ * ResearchAlgo class implementing Depth-First Search (DFS) algorithm.
+ */
+
 package search;
 
 import app.Problem;
