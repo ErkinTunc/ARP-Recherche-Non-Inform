@@ -1,3 +1,4 @@
+package model;
 
 /**
  * Coordonates class representing a point in a 2D space.

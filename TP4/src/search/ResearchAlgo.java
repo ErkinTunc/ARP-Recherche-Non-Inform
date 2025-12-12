@@ -1,3 +1,11 @@
+package search;
+import app.Problem;
+
+
+import model.Node;
+import model.State;
+import model.City;
+import algorithm.Kruskal;
 
 import java.util.Stack;
 

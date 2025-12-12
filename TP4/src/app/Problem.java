@@ -1,3 +1,7 @@
+package app;
+
+import model.City;
+import model.State;
 
 import java.util.ArrayList;
 

@@ -1,3 +1,8 @@
+package algorithm;
+
+import model.City;
+import model.Edge;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
