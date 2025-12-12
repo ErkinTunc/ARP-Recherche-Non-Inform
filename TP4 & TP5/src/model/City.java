@@ -70,12 +70,12 @@ public class City {
      * @param file
      * @return
      */
-    public static ArrayList<City> readCitiesFromFile(File file) {
+    public static ArrayList<City> readCitiesFromFile(File file,int maxCitiesLoaded) {
         ArrayList<City> cities = new ArrayList<>();
 
         try (Scanner scanner = new Scanner(file)) {
             int count = 0;
-            while (scanner.hasNextLine() && count < 10) {
+            while (scanner.hasNextLine() && count < maxCitiesLoaded) {
                 count++;
                 String line = scanner.nextLine().trim();
                 if (line.isEmpty())
