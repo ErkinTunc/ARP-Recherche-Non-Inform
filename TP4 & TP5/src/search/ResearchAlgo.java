@@ -33,7 +33,6 @@ public class ResearchAlgo {
                 stack.push(childNode);
             }
         }
-
         return null; // No solution found
     }
 }

@@ -33,16 +33,16 @@ public class ResearchAlgo {
         if (remaining.size() <= 1) return 0;
 
         List<Edge> edges = new ArrayList<>();
-        for (int i = 0; i < remaining.size(); i++) for (
-            int j = i + 1;
-            j < remaining.size();
-            j++
-        ) {
-            City a = remaining.get(i);
-            City b = remaining.get(j);
-            edges.add(new Edge(a, b, a.distanceTo(b)));
-        }
 
+        for (int i = 0; i < remaining.size(); i++) 
+        {
+            for (int j = i + 1; j < remaining.size(); j++)
+            {
+                City a = remaining.get(i);
+                City b = remaining.get(j);
+                edges.add(new Edge(a, b, a.distanceTo(b)));
+            }   
+        }
         return Kruskal.mstWeight(remaining, edges);
     }
 
