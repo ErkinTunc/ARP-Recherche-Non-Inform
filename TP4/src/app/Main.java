@@ -16,7 +16,7 @@ import algorithm.*;
 // Run from bin folder :      java -cp build app.Main
 //---------------------------------------------------
 // MAC / LINUX
-// Compile in to build :      java -cp build app.Main
+// Compile in to build :      javac -d build src/algorithm/*.java src/model/*.java src/search/*.java src/app/*.java
 // Run from bin folder :      java -cp build app.Main
 
 import java.io.File;

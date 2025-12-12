@@ -1,79 +1,60 @@
-
 /**
- * Humain class representing a human player in the game.
- * It extends the User class.
- * @author ELNASORY Karam
+ * TP6 - Game of Reducing N to 0
+ * 
+ * This code defines the Human class representing a human player in the game,
+ * where players can either subtract 1 from N or divide N by 2 if it's even.
+ * The goal is to reach N = 0.
  */
 
-public class Human extends User
-{
-    /**
-     * @description Constructor for Humain class, meant to be used for new players.
-     * @param name name of the player
-     * @param color color of the player
-     * @deprecated
-     */
-    public Human (String name) 
-    {
-        super(name) ;
+import java.util.List;
+
+public class Human extends User {
+
+    public Human() {
+        super(promptForName());
+    }
+    
+    // Constructor used when loading or internal creation
+    public Human(String name) {
+        super(name);
     }
 
-    /**
-     * @description Constructor for Humain class, for new players, interact's with the user.
-     */
-    public Human ()
-    {
-        super (promptForName()) ;
+    public static String promptForName() {
+        System.out.print("Enter your name: ");
+        return System.console().readLine();
     }
 
-    /**
-     * @description Method to prompt the user for their name.
-     * @return The name of the player as a String.
-     */
-    public static String promptForName () 
-    {
-        System.out.print("Enter your name: ") ;
-
-        String name = System.console().readLine() ;  
-
-        return name ;
-    }
-
-    /**
-     * @description Method to choose a ActionToTake on the board to play a move (place a token).
-     * @return Action object representing the chosen ActionToTake.
-     */
     @Override
-    public Action choseAction (State currentState) 
-    {
-        System.out.print("Enter your move (x y): ") ;
-        String input = System.console().readLine() ;
+    public Action choseAction(State currentState) {
+        System.out.println("\n--- It is " + this.name + "'s turn ---");
+        System.out.println("Current Number: " + currentState.getN());
         
-        String[] parts = input.split("\\s+") ;
+        List<Action> actions = currentState.getAvailableActions();
+        
+        System.out.println("Available moves:");
+        for (int i = 0; i < actions.size(); i++) {
+            System.out.println((i + 1) + ". " + actions.get(i));
+        }
+        System.out.println("M. Menu / Save");
 
-        Action ActionToTake = null ;
+        System.out.print("Choose your move: ");
+        String input = System.console().readLine();
 
-        if (parts.length > 0) 
-        {
-            try 
-            {
-                // Take the action number 1 or 2 and create the corresponding action 
-                
-            } 
-            catch (NumberFormatException e) 
-            {
-                System.out.println("Invalid input. Please enter two integers.") ;
-
-                return choseAction(currentState) ; // Retry the input
-            }
-        } 
-        else 
-        {
-            System.out.println("Invalid input. Please enter two integers.") ;
-
-            return choseAction(currentState) ; // Retry the input
+        // Handle Menu request
+        if (input.equalsIgnoreCase("M")) {
+            return null; // Signal to Game to open menu
         }
 
-        return ActionToTake ;
-    } 
+        try {
+            int choice = Integer.parseInt(input);
+            if (choice >= 1 && choice <= actions.size()) {
+                return actions.get(choice - 1);
+            }
+        } catch (NumberFormatException e) {
+            // Ignore
+        }
+
+        System.out.println("Invalid input. Try again.");
+        return choseAction(currentState);
+    }
 }

@@ -1,30 +1,25 @@
 
 /**
+ * TP6 - Halving Game
  * 
- * @author ELNASORY Karam
+ * This code is part of the TP6 project for the Halving Game.
+ * It defines the possible actions a player can take during the game.
  */
+import java.io.Serializable;
 
-public enum Action
-{
-    DIVIED_BY_2(2, 0),
-    SUBTRACT_1(0, 1);
-
-    private int divide;
-    private int subtract;
-
-    Action (int divide, int subtract)
-    {
-        this.divide = divide;
-        this.subtract = subtract;
+/**
+ * Enum representing possible actions in the Halving Game.
+ */
+public enum Action implements Serializable {
+    DIVIDE_BY_2,
+    SUBTRACT_1;
+    
+    @Override
+    public String toString() {
+        switch(this) {
+            case DIVIDE_BY_2: return "Divide by 2";
+            case SUBTRACT_1: return "Subtract 1";
+            default: return super.toString();
+        }
     }
-
-    public int getDivide() {
-        return divide;
-    }
-
-    public int getSubtract() {
-        return subtract;
-    }
-
 }
-

@@ -1,166 +1,115 @@
-
-import java.io.IOException;
-import java.util.*;
-
 /**
- * KLauncher class representing the launcher for the game.
- * It contains the main method to start the game.
- * @author ELNASORY Karam + Syrine BEN HASSINE 
+ * TP6 - Game Launcher and Menu System
  */
 
- //add computer affichage , welcome message , 
-public class Launcher 
-{
-    private Game game ; // The on going game
+import java.io.IOException;
 
-    /**
-     * Constructor 
-     */
-    public Launcher () 
-    {
-        this.game = null ;
+public class Launcher {
+    private Game game;
+
+    public static void main(String[] args) {
+        Launcher launcher = new Launcher();
+        launcher.mainMenu();
     }
 
-    /**
-     * Displays a welcome message at the start of the game.
-     */
-    private void printWelcomeMessage() {
+    public void mainMenu() {
+        Game.clear();
         System.out.println("=====================================");
-        System.out.println("🎮  Welcome to Halviing GAME !!");
+        System.out.println("🎮  Welcome to HALVING GAME !!");
         System.out.println("=====================================");
-        System.out.println("Get ready to challenge a friend or the computer!");
-        System.out.println();
-    }
+        System.out.println("1. New Game");
+        System.out.println("2. Load Game");
+        System.out.println("3. Exit");
+        System.out.print("Choice: ");
 
-    /**
-     * @description Main menu
-     */
-    public void mainMenu ()
-    {
-        printWelcomeMessage();
-        System.out.println("Main Menu") ;
-        System.out.println("1. Start Game") ;
-        System.out.println("2. Load Game") ;
-        System.out.println("3. Settings (Setup a custome game conditions)") ; // IDEA
-        System.out.println("4. Exit") ;
-        System.out.print("Enter your choice: ") ;
-
-        int choice = Integer.parseInt(System.console().readLine()) ;
-
-        switch (choice) 
-        {
-            case 1:
-                this.startingMenu() ;
-                break ;
-
-            case 2:
-                this.game = Game.loadGame() ;
-                this.game.start() ;
-                break ;
-
-            case 3:
-                System.out.println("Current game conditions:") ;
-                System.out.println("Enter the new game conditions:") ;
-
-                mainMenu();
-
-                break ;
-
-            case 4:
-                System.exit(0) ;
-                break ;
-
-            default:
-                System.out.println("Invalid choice") ;
-                mainMenu() ;
-                break ;
+        String input = System.console().readLine();
+        
+        if (input.equals("1")) {
+            startingMenu();
+        } else if (input.equals("2")) {
+            this.game = Game.loadGame();
+            if (this.game != null) runGameLoop();
+            else mainMenu();
+        } else if (input.equals("3")) {
+            System.exit(0);
+        } else {
+            mainMenu();
         }
     }
 
-    /**
-     * @description Starting menu
-     */
-    public void startingMenu ()
-    {
-        System.out.println("Starting Menu") ;
-        System.out.println("1. Player VS Player") ;
-        System.out.println("2. Player VS Computer") ;
-        System.out.println("3. Back to Main Menu") ;
-        System.out.print("Enter your choice: ") ;
+    public void startingMenu() {
+        System.out.println("\n--- New Game Setup ---");
+        System.out.println("1. Human VS Human");
+        System.out.println("2. Human VS Computer");
+        System.out.println("3. Back");
+        System.out.print("Choice: ");
 
-        int choice = Integer.parseInt(System.console().readLine()) ;
-
-        switch (choice) 
-        {
-            case 1:
-                this.game = new Game ( new Human(), new Human(), 10 ); 
-                this.game.start() ;
-                break ;
-
-            case 2:
-                this.game = new Game (10) ;
-                this.game.start() ;
-                break ;
-
-            case 3:
-                mainMenu() ;
-                break ;
-
-            default:
-                System.out.println("Invalid choice") ;
-                startingMenu() ;
-                break ;
+        String choice = System.console().readLine();
+        
+        if (choice.equals("3")) {
+            mainMenu();
+            return;
         }
-    }
 
-    /** 
-     * @description Handles the inGame menu.
-     */
-    public void inGameMenu ()
-    {
-        System.out.println("In Game Menu") ;
-        System.out.println("1. Resume Game") ;
-        System.out.println("2. Save Game") ;
-        System.out.println("3. Exit without saving") ;
-        System.out.print("Enter your choice: ") ;
-
-        int choice = Integer.parseInt(System.console().readLine()) ;
-
-        switch (choice) 
-        {
-            case 1:
-                this.game.continu()  ;
-
-            case 2:
-                try 
-                {
-                    this.game.save() ;
-                } 
-                catch (IOException e) 
-                {
-                    e.printStackTrace();
-                }
-                break ;
-
-            case 3:
-                System.exit(0) ;
-                break ;
-
-            default:
-                System.out.println("Invalid choice") ;
-                inGameMenu() ;
-                break ;
+        System.out.print("Enter starting number N (e.g. 20): ");
+        int n;
+        try {
+            n = Integer.parseInt(System.console().readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid number.");
+            startingMenu();
+            return;
         }
+
+        if (choice.equals("1")) {
+            this.game = new Game(new Human(), new Human(), n);
+        } else if (choice.equals("2")) {
+            this.game = new Game(new Human(), new Computer(), n);
+        } else {
+            startingMenu();
+            return;
+        }
+
+        runGameLoop();
     }
 
     /**
-     * @description Main function to start the game 
+     * Runs the game. If play() returns false, it means user paused -> Show InGame Menu.
      */
-    public static void main (String [] args) 
-    {
-        Launcher launcher = new Launcher() ;
-        launcher.mainMenu(); 
+    public void runGameLoop() {
+        boolean gameFinished = this.game.play();
+        
+        if (gameFinished) {
+            System.out.println("Press Enter to return to Main Menu...");
+            System.console().readLine();
+            mainMenu();
+        } else {
+            inGameMenu();
+        }
+    }
+
+    public void inGameMenu() {
+        System.out.println("\n--- Game Paused ---");
+        System.out.println("1. Resume");
+        System.out.println("2. Save Game");
+        System.out.println("3. Exit to Main Menu (Unsaved progress lost)");
+        System.out.print("Choice: ");
+
+        String choice = System.console().readLine();
+
+        if (choice.equals("1")) {
+            runGameLoop();
+        } else if (choice.equals("2")) {
+            try {
+                this.game.save();
+            } catch (IOException e) {
+                System.out.println("Save failed: " + e.getMessage());
+            }
+            runGameLoop(); // Resume after save
+        } else if (choice.equals("3")) {
+            mainMenu();
+        } else {
+            inGameMenu();
+        }
     }
 }
-
-

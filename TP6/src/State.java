@@ -1,60 +1,63 @@
 /**
+ * TP6 - Game of Reducing N to 0
  * 
- * @author ELNASORY Karam
+ * This code defines the State class representing the state of the game,
+ * where players can either subtract 1 from N or divide N by 2 if it's even.
+ * The goal is to reach N = 0.
  */
 
-
-
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
-public class State
-{
-    private int n ;
-    private int player ;
+/**
+ * Represents the state of the game (the number N).
+ */
+public class State implements Serializable {
+    private final int n;
 
-    public State (int player, int n)
-    {
-        this.player = player ;
-        this. n = n ;
+    public State(int n) {
+        this.n = n;
     }
 
-    public boolean is_goal ()
-    {
-        return player == n ;
+    public int getN() {
+        return n;
     }
 
-    public int utility ()
-    {
-        if (is_goal())
-            return -1 ;
-        else
-            return 1 ;
+    /**
+     * Checks if the game is over (N == 0).
+     */
+    public boolean isGoal() {
+        return n == 0;
     }
 
-    ArrayList <Action> actions ()
-    {
-        ArrayList <Action> acts = new ArrayList<>() ;
-
-        if (n % 2 == 0) acts.add(Action.DIVIED_BY_2) ;
-        if (n > 0 ) acts.add(Action.SUBTRACT_1) ;
-        
-        return acts ;
+    /**
+     * Returns valid actions based on current N.
+     */
+    public List<Action> getAvailableActions() {
+        List<Action> actions = new ArrayList<>();
+        if (n > 0)
+        {
+            actions.add(Action.SUBTRACT_1);
+            actions.add(Action.DIVIDE_BY_2);
+        }
+        return actions;
     }
 
-    State succ (Action a)
-    {
-        int new_n = n ;
-        if (a == Action.DIVIED_BY_2)
-            new_n = n / 2 ;
-
-        else if (a == Action.SUBTRACT_1)
-            new_n = n - 1 ;
-
-        return new State (1 - player % 2, new_n) ;
+    /**
+     * Generates the next state based on an action.
+     */
+    public State succ(Action a) {
+        if (a == Action.DIVIDE_BY_2) {
+            return new State(n / 2);
+        } else if (a == Action.SUBTRACT_1) {
+            return new State(n - 1);
+        }
+        return this; // Should not happen
     }
 
-    void display ()
-    {
-        System. out. println ("Player: " + player + " N: " + n) ;
+    @Override
+    public String toString() {
+        return "Current Value N = " + n;
     }
 }

@@ -1,65 +1,37 @@
+/**
+ * TP6 - Game of Reducing N to 0
+ * 
+ * This code defines the abstract User class representing a player in the game,
+ * where players can either subtract 1 from N or divide N by 2 if it's even.
+ * The goal is to reach N = 0.
+ */
 
 import java.io.Serializable;
 
 /**
- * User abstract class representing a player in the game.
- * It contains the player's name, tokens color and score.
- * @author ELNASORY Karam
+ * Abstract class representing a player.
  */
-public abstract class User implements Serializable
-{
-    private final String name ;
+public abstract class User implements Serializable {
+    protected String name;
+    protected int score; // Optional for this game, but kept for compatibility
 
-    /**
-     * Getter method for the player name.
-     * @return User name (String)
-     */
-
-    public String name ()
-    {
-        return name ;
+    public User(String name) {
+        this.name = name;
+        this.score = 0;
     }
-    
-    int score ;
-    
-    /**
-     * Getter methode for the player score.
-     * @return int
-     */
-    public int score ()
-    {
-        return score ;
+
+    public String name() {
+        return name;
     }
 
     /**
-     * Constructor for User class.
-     * @param name The name of the player.
-     * @param score The score of the player.
-     * @param playerColor The color of the player.
+     * Determines the move to make based on the current state.
+     * Returns NULL if the user wants to pause/exit (for Human).
      */
-    public User (String name) 
-    {
-        this.name = name ;
-    }
+    public abstract Action choseAction(State currentState);
 
-    public abstract Action choseAction (State actualState) ;
-
-    /**
-     * Methode to return the object state as a string.
-     * @return String representation of the object.
-     */
-    public String toString () 
-    {
-        StringBuilder sb = new StringBuilder() ;
-
-        sb.append ("Name : ") ;
-        sb.append (name) ;
-        sb.append (" | ") ;
-
-        sb.append ("Score : ") ;
-        sb.append (score) ;
-        sb.append (" | ") ;
-
-        return sb.toString() ;
+    @Override
+    public String toString() {
+        return name;
     }
 }

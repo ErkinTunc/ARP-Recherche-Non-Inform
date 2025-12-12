@@ -1,69 +1,63 @@
-
-
-import java.util.HashMap;
-
 /**
- * @description This class represents a computer player in the game.
- * * It extends the User class and inherits its properties and methods.
- * 
- * @author ELNASORY Karam
- * 
+ * TP6 - MinMax Algorithm Implementation
  */
 
-public class Computer extends User 
-{   
-    /**
-     * Constructor for Computer class, 
-     * @description creats a computer player with a default score of 15.
-     */
-    public Computer ()
-    {
-        super ("Computer") ; // IDEA : Use a default color for the computer player
+import java.util.List;
+
+public class Computer extends User {
+
+    public Computer() {
+        super("Computer");
     }
-    
-    /**
-     * This method is used to prompt the computer to choose a placement on the matrix.
-     * It randomly chooses a placement on the matrix.
-     * @param actualState The current state of the game.
-     * @return Coordonates The coordinates of the placement.
-     * @description This method is meant to be used with a backtracking algorithm to find the best placement.
-     */
+
     @Override
-    public Action choseAction (State actualState) 
-    {
-        return minmax_policiy(actualState) ;
+    public Action choseAction(State currentState) {
+        System.out.println("\nComputer is thinking...");
+        try {
+            Thread.sleep(800); // Small delay for realism
+        } catch (InterruptedException e) { e.printStackTrace(); }
+
+        return minmax_policy(currentState);
     }
 
     /**
-     * 
-     * @param s State object 
-     * @return
+     * Entry point for MinMax algorithm.
      */
+    private Action minmax_policy(State s) {
+        List<Action> actions = s.getAvailableActions();
+        
+        Action bestAction = actions.get(0);
+        int bestValue = Integer.MIN_VALUE;
 
-    Action minmax_policiy(State s)
-    {
-        HashMap<Action, Integer> action_utilities = new HashMap<>() ;
-
-        for (Action a : s.actions())
-        {
-            State succ = s.succ(a) ;
-            int utility = succ.utility() ;
-            action_utilities.put(a, utility) ;
-        }
-
-        Action best_action = null ;
-        int best_utility = Integer.MAX_VALUE ;
-
-        for (Action a : action_utilities.keySet())
-        {
-            int utility = action_utilities.get(a) ;
-            if (utility < best_utility)
-            {
-                best_utility = utility ;
-                best_action = a ;
+        for (Action a : actions) {
+            // We want to maximize our gain. 
+            // The opponent will try to minimize our gain (so we call min).
+            int value = minValue(s.succ(a));
+            if (value > bestValue) {
+                bestValue = value;
+                bestAction = a;
             }
         }
+        return bestAction;
+    }
 
-        return best_action ;
+    private int maxValue(State s) {
+        if (s.isGoal()) return -1; // If I receive 0, I lost.
+        
+        int v = Integer.MIN_VALUE;
+        for (Action a : s.getAvailableActions()) {
+            v = Math.max(v, minValue(s.succ(a)));
+        }
+        return v;
+    }
+
+    private int minValue(State s) {
+        if (s.isGoal()) return 1; // If opponent receives 0, I won.
+        
+        int v = Integer.MAX_VALUE;
+        for (Action a : s.getAvailableActions()) {
+            v = Math.min(v, maxValue(s.succ(a)));
+        }
+        return v;
     }
 }
