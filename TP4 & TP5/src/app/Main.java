@@ -28,7 +28,7 @@ public class Main {
         ArrayList<City> cities = City.readCitiesFromFile(file);
         System.out.println("Number of cities loaded: " + cities.size());
 
-        City startCity = cities.get(0); // Assuming the first city is the starting point
+        City startCity = cities.get(10); // Assuming the first city is the starting point
         Problem problem = new Problem(cities, startCity);
 
         Node solutionNode = ResearchAlgo.depthFirstSearch(problem);
@@ -36,7 +36,7 @@ public class Main {
             System.out.println("Solution found!");
             ArrayList<City> path = solutionNode.path();
             for (City city : path) {
-                System.out.println(city.name() + " at " + city.coordonates().x() + ", " + city.coordonates().y());
+                System.out.println(city.id() + " at " + city.coordonates().x() + ", " + city.coordonates().y());
             }
         } else {
             System.out.println("No solution found.");
