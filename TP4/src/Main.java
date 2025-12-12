@@ -13,10 +13,13 @@ public class Main
         Problem problem = new Problem(cities, startCity);
 
         Node solutionNode = ResearchAlgo.depthFirstSearch(problem);
-        if (solutionNode != null) {
+        if (solutionNode != null)
+        {
             System.out.println("Solution found!");
             ArrayList<City> path = solutionNode.path();
-            for (City city : path) {
+            
+            for (City city : path)
+            {
                 System.out.println(city.name() + " at " + city.coordonates().x() + ", " + city.coordonates().y());
             }
         } else {

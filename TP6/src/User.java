@@ -38,12 +38,13 @@ public abstract class User implements Serializable
      * @param score The score of the player.
      * @param playerColor The color of the player.
      */
-
     public User (String name, int score) 
     {
         this.name = name ;
         this.score = score ;
     }
+
+    public abstract Action choseAction (State actualState) ;
 
     /**
      * Methode to return the object state as a string.

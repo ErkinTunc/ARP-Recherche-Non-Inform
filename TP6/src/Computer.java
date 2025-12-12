@@ -1,12 +1,12 @@
 package src;
 
-import java.util.Random;
+import java.util.HashMap;
 
 /**
  * @description This class represents a computer player in the game.
  * * It extends the User class and inherits its properties and methods.
  * 
- * @author ELNASORY Karam - Syrine BEN HASSINE
+ * @author ELNASORY Karam
  * 
  */
 
@@ -19,7 +19,7 @@ public class Computer extends User
      */
     public Computer ()
     {
-        super ("Computer", 15, color) ; // IDEA : Use a default color for the computer player
+        super ("Computer", 15) ; // IDEA : Use a default color for the computer player
     }
 
     /**
@@ -36,17 +36,46 @@ public class Computer extends User
     /**
      * This method is used to prompt the computer to choose a placement on the matrix.
      * It randomly chooses a placement on the matrix.
-     * @param matrix that the computer will play on.
+     * @param actualState The current state of the game.
      * @return Coordonates The coordinates of the placement.
      * @description This method is meant to be used with a backtracking algorithm to find the best placement.
      */
     @Override
-    public Coordonates chosePlacement(Matrix matrix) 
+    public Action choseAction (State actualState) 
     {
-        // TODO : backtracking algorithm to find the best placement
+        return minmax_policiy(actualState) ;
+    }
 
-        Random random = new Random() ;
-        Coordonates placement = new Coordonates(random.nextInt(15) , random.nextInt(15)) ;
-        return placement ;
+    /**
+     * 
+     * @param s State object 
+     * @return
+     */
+
+    Action minmax_policiy(State s)
+    {
+        HashMap<Action, Integer> action_utilities = new HashMap<>() ;
+
+        for (Action a : s.actions())
+        {
+            State succ = s.succ(a) ;
+            int utility = succ.utility() ;
+            action_utilities.put(a, utility) ;
+        }
+
+        Action best_action = null ;
+        int best_utility = Integer.MAX_VALUE ;
+
+        for (Action a : action_utilities.keySet())
+        {
+            int utility = action_utilities.get(a) ;
+            if (utility < best_utility)
+            {
+                best_utility = utility ;
+                best_action = a ;
+            }
+        }
+
+        return best_action ;
     }
 }

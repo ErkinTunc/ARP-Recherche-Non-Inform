@@ -45,7 +45,7 @@ public class Human extends User
      * @param score to be parametered if we want to change the game initial conditions.
      */
     public Human (int score)     {
-        super ( promptForName(), score, promptFor() ) ;
+        super ( promptForName(), score, promptForChoice() ) ;
     }
 
     /**
@@ -61,21 +61,18 @@ public class Human extends User
         return name ;
     }
 
-    public static Color promptFor()    {
+    public static Action promptForChoice()    {
         System.out.print("Choose a color: ") ;
-        Color.displayAvailableColors() ;
+        Action.values() ;
+
         String colorInput = System.console().readLine() ;
         int colorIndex = Integer.parseInt(colorInput) ;
 
-        Color[] colors = Color.values();
+        Action[] colors = Action.values();
 
         try 
         {
-            if (colorIndex >= 1 && colorIndex < colors.length && colors[colorIndex - 1] != Color.WHITE) 
-            {
-                return colors[colorIndex - 1];
-            }
-            System.out.println("Invalid selection! Try again.");
+
         } 
         catch (NumberFormatException e) 
         {
@@ -86,19 +83,18 @@ public class Human extends User
     }
 
     /**
-     * @description Method to choose a placement on the board to play a move (place a token).
-     * @return Coordonates object representing the chosen placement.
+     * @description Method to choose a ActionToTake on the board to play a move (place a token).
+     * @return Coordonates object representing the chosen ActionToTake.
      */
     @Override
-    public Coordonates chosePlacement (Matrix matrix) 
+    public Action choseAction (State currentState) 
     {
-        System.out.println( matrix.toString() ) ;
         System.out.print("Enter your move (x y): ") ;
         String input = System.console().readLine() ;
         
         String[] parts = input.split("\\s+") ;
 
-        Coordonates placement = null ;
+        Action ActionToTake = null ;
 
         if (parts.length == 2) 
         {
@@ -106,29 +102,28 @@ public class Human extends User
             {
                 int x = Integer.parseInt(parts[0]) ;
                 int y = Integer.parseInt(parts[1]) ;
-                placement = new Coordonates(x, y) ;
             } 
             catch (NumberFormatException e) 
             {
                 System.out.println("Invalid input. Please enter two integers.") ;
 
-                return chosePlacement(matrix) ; // Retry the input
+                return choseActionToTake(matrix) ; // Retry the input
             }
         } 
         else 
         {
             System.out.println("Invalid input. Please enter two integers.") ;
 
-            return chosePlacement(matrix) ; // Retry the input
+            return choseActionToTake(matrix) ; // Retry the input
         }
 
-        // Check if the placement is valid
-        while (!matrix.isValidMove(placement)) 
+        // Check if the ActionToTake is valid
+        while (!matrix.isValidMove(ActionToTake)) 
         {
-            System.out.println("Invalid placement! Try again.") ;
-            placement = chosePlacement(matrix) ; // Retry the input
+            System.out.println("Invalid ActionToTake! Try again.") ;
+            ActionToTake = choseActionToTake(matrix) ; // Retry the input
         }
 
-        return placement ;
+        return ActionToTake ;
     } 
 }

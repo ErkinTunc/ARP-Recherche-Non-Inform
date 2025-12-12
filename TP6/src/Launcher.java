@@ -9,19 +9,17 @@ import java.io.IOException;
  */
 
  //add computer affichage , welcome message , 
-public class KLauncher 
+public class Launcher 
 {
     private Game game ; // The on going game
-    private GameConditions gameConditions ; // The game conditions
 
     /**
      * Constructor 
      */
-    public KLauncher () 
+    public Launcher () 
     {
         // Constructor for KLauncher class
         this.game = null ;
-        this.gameConditions = new GameConditions() ; // Default game conditions
     }
 
     /**
@@ -63,10 +61,8 @@ public class KLauncher
 
             case 3:
                 System.out.println("Current game conditions:") ;
-                System.out.println(this.gameConditions.toString()) ;
                 System.out.println("Enter the new game conditions:") ;
 
-                this.gameConditions = GameConditions.customeConditions() ;
                 mainMenu();
 
                 break ;
@@ -98,12 +94,10 @@ public class KLauncher
         switch (choice) 
         {
             case 1:
-                this.game = new Game(this.gameConditions) ; // Player vs Player
                 this.game.start() ;
                 break ;
 
             case 2:
-                this.game = new Game(this.gameConditions) ; // Player vs Computer // TODO : use an appropriate constructor
                 this.game.start() ;
                 break ;
 
@@ -163,7 +157,7 @@ public class KLauncher
      */
     public static void main (String [] args) 
     {
-        KLauncher launcher = new KLauncher() ;
+        Launcher launcher = new Launcher() ;
         launcher.mainMenu(); 
     }
 }
