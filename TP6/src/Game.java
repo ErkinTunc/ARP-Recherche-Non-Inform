@@ -1,4 +1,3 @@
-package src ;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,7 +8,9 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.Random;
+
 
 /**
  * Game class representing a game of Halving
@@ -49,9 +50,12 @@ public class Game implements Serializable
     
     private int n ; // The integer that players can modify
 
-    public GameProf(int n)
+    public Game(int n)
     {
         this.n = n;
+
+        this.player1 = new Human() ;
+        this.player2 = new Computer() ;
     }
 
     public State initial_state () 
@@ -217,17 +221,6 @@ public class Game implements Serializable
             return game ;
         }
     }
-
-    /**
-     * @deprecated
-     * @description Place the first token in the center of the matrix
-     * @param startingUser the first user to play
-     */
-
-    private void placeFirstToken (User startingUser)
-    {
-        System.out.println(startingUser.toString() + " Starts \n") ;
-    }
     
     /**
      * Start the game 
@@ -275,6 +268,8 @@ public class Game implements Serializable
             System.out.println("Player " + (( this.nextUser == this.player1 ) ? this.player2 : this.player1).name() + " won the game") ;
             return this.nextUser ;
         }
+
+        return nextUser ;
     }
 
     /**

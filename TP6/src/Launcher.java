@@ -1,4 +1,3 @@
-package src;
 
 import java.io.IOException;
 
@@ -27,7 +26,7 @@ public class Launcher
      */
     private void printWelcomeMessage() {
         System.out.println("=====================================");
-        System.out.println("🎮  Welcome to GOMOKU GAME !!");
+        System.out.println("🎮  Welcome to Halviing GAME !!");
         System.out.println("=====================================");
         System.out.println("Get ready to challenge a friend or the computer!");
         System.out.println();
