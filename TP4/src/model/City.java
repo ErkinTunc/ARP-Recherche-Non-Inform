@@ -10,19 +10,19 @@ public class City {
     private final int id;
     private final Coordonates coordonates;
 
-    public City(String name, Coordonates coordonates) {
-        this.name = name;
+    public City(int id, Coordonates coordonates) {
+        this.id = id;
         this.coordonates = coordonates;
     }
 
     // -------------- Getters --------------
 
-    public String name() {
-        return this.name;
+    public int id() {
+        return id;
     }
 
     public Coordonates coordonates() {
-        return this.coordonates;
+        return coordonates;
     }
 
     // -------------- Static Methods --------------
@@ -47,12 +47,12 @@ public class City {
                 String[] tokens = line.split(" ");
 
                 if (tokens.length >= 3) {
-                    String name = tokens[0];
-                    int x = Integer.parseInt(tokens[1]);
-                    int y = Integer.parseInt(tokens[2]);
+                    int id = Integer.parseInt(tokens[0]);
+                    double x = Double.parseDouble(tokens[1]);
+                    double y = Double.parseDouble(tokens[2]);
 
                     Coordonates coordonates = new Coordonates(x, y);
-                    return new City(name, coordonates);
+                    return new City(id, coordonates);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -87,12 +87,12 @@ public class City {
                     continue;
 
                 // Some input files may not include a textual name; use the first token as name
-                String name = tokens[0];
+                int id = Integer.parseInt(tokens[0]);
                 try {
-                    int x = Integer.parseInt(tokens[1]);
-                    int y = Integer.parseInt(tokens[2]);
+                    double x = Double.parseDouble(tokens[1]);
+                    double y = Double.parseDouble(tokens[2]);
                     Coordonates coord = new Coordonates(x, y);
-                    cities.add(new City(name, coord));
+                    cities.add(new City(id, coord));
                 } catch (NumberFormatException nfe) {
                     // skip malformed lines
                     System.err.println("Skipping malformed line: " + line);

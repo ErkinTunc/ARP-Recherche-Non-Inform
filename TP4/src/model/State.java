@@ -55,6 +55,6 @@ public class State {
 
     @Override
     public String toString() {
-        return "Current City: " + this.currentCity.name() + ", Visited Cities: " + this.visitedCities.size();
+        return "Current City: " + this.currentCity.id() + ", Visited Cities: " + this.visitedCities.size();
     }
 }
