@@ -1,5 +1,6 @@
 
 import java.io.IOException;
+import java.util.*;
 
 /**
  * KLauncher class representing the launcher for the game.
@@ -17,7 +18,6 @@ public class Launcher
      */
     public Launcher () 
     {
-        // Constructor for KLauncher class
         this.game = null ;
     }
 
@@ -93,10 +93,12 @@ public class Launcher
         switch (choice) 
         {
             case 1:
+                this.game = new Game ( new Human(), new Human(), 10 ); 
                 this.game.start() ;
                 break ;
 
             case 2:
+                this.game = new Game (10) ;
                 this.game.start() ;
                 break ;
 

@@ -29,13 +29,29 @@ public class Game implements Serializable
 
     // private final ArrayList< User > players ; // IDEA
 
+
+    /**
+     * 
+     * @param n
+     */
+
+    public Game(int n)
+    {
+        this.n = n;
+
+        this.player1 = new Human() ;
+        this.player2 = new Computer() ;
+    }
+
     /**
      * @description Constructor for Game class, Human vs Human
      * @param player1 the first player
      * @param player2 the second player
      */
-    public Game ( Human player1, Human player2 ) 
+    public Game ( Human player1, Human player2, int n ) 
     {
+        this.n = n ;
+        
         this.player1 = player1 ;
         this.player2 = player2 ;
     }
@@ -50,13 +66,6 @@ public class Game implements Serializable
     
     private int n ; // The integer that players can modify
 
-    public Game(int n)
-    {
-        this.n = n;
-
-        this.player1 = new Human() ;
-        this.player2 = new Computer() ;
-    }
 
     public State initial_state () 
     {
