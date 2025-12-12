@@ -1,4 +1,4 @@
-package src;
+
 
 import java.util.HashMap;
 
@@ -14,23 +14,11 @@ public class Computer extends User
 {   
     /**
      * Constructor for Computer class, 
-     * @param color The Color of the player.
      * @description creats a computer player with a default score of 15.
      */
     public Computer ()
     {
-        super ("Computer", 15) ; // IDEA : Use a default color for the computer player
-    }
-
-    /**
-     * Constructor for Computer class, 
-     * @param score initial score of the player.
-     * @param color The Color of the player tokens.
-     * @description This constructor is meant to be used to set a custom score for the computer player.
-     */
-    public Computer (int score)
-    {
-        super ("Computer", score) ; // IDEA : Use a default color for the computer player
+        super ("Computer") ; // IDEA : Use a default color for the computer player
     }
     
     /**
