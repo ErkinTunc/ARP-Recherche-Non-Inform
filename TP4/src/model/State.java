@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 public class State {
     private City currentCity; // Current city in the state
-    private ArrayList<City> visitedCities; // List of visited cities
-    private ArrayList<Integer> path; // Path taken to reach this state
     private double cost; // Cost to reach this state
 
-    public State(City currentCity, ArrayList<City> visitedCities, ArrayList<Integer> path, double cost) {
+    private ArrayList<City> visitedCities; // List of visited cities
+    private ArrayList<Integer> path; // Path taken to reach this state
+
+    private double g; // g :cout du départ jusqu’a ici (somme des distance parcours)
+
+    public State(City currentCity, ArrayList<City> visitedCities, ArrayList<Integer> path, double cost, double g) {
         this.currentCity = currentCity;
         this.visitedCities = visitedCities;
         this.path = new ArrayList<>();
         this.cost = cost;
+        this.g = g;
     }
 
     public State(City currentCity) {
@@ -21,6 +25,7 @@ public class State {
         this.visitedCities.add(currentCity);
         this.path = new ArrayList<>();
         this.cost = 0;
+        this.g = 0;
     }
 
     // -------------- Getters --------------
@@ -40,10 +45,12 @@ public class State {
         return res;
     }
 
+    // -------------- Methods --------------
+
     public State succession(State state, City cityToVisit, ArrayList<Integer> newPath, double stepCost) {
         ArrayList<City> newVisitedCities = new ArrayList<>(state.visitedCities());
         newVisitedCities.add(cityToVisit);
-        return new State(cityToVisit, newVisitedCities, newPath, state.cost + stepCost);
+        return new State(cityToVisit, newVisitedCities, newPath, state.cost + stepCost , state.g + stepCost);
     }
 
     @Override

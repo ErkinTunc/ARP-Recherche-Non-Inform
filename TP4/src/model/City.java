@@ -15,9 +15,6 @@ public class City {
         this.coordonates = coordonates;
     }
 
-
-
-
     // -------------- Getters --------------
 
     public String name() {
@@ -29,7 +26,7 @@ public class City {
     }
 
     // -------------- Static Methods --------------
-    
+
     /**
      * @deprecated Because we now read multiple cities from a file
      *             Read a representation of a City from a file
