@@ -2,83 +2,52 @@ package model;
 
 import java.util.ArrayList;
 
-public class State
-{
-    private City currentCity ;
-    private ArrayList<City> visitedCities ;
+public class State {
+    private City currentCity; // Current city in the state
+    private ArrayList<City> visitedCities; // List of visited cities
+    private ArrayList<Integer> path; // Path taken to reach this state
+    private double cost; // Cost to reach this state
 
-    /**
-     *  
-     * @param currentCity
-     * @param visitedCities
-     */
-    public State ( City currentCity , ArrayList<City> visitedCities )
-    {
-        this.currentCity = currentCity ;
-        this.visitedCities = visitedCities ;
+    public State(City currentCity, ArrayList<City> visitedCities, ArrayList<Integer> path, double cost) {
+        this.currentCity = currentCity;
+        this.visitedCities = visitedCities;
+        this.path = new ArrayList<>();
+        this.cost = cost;
     }
 
-    /**
-     * 
-     * @param currentCity
-     */
-    public State ( City currentCity )
-    {
-        this.currentCity = currentCity ;
-        this.visitedCities = new java.util.ArrayList<>() ;
-        this.visitedCities.add(currentCity) ;
+    public State(City currentCity) {
+        this.currentCity = currentCity;
+        this.visitedCities = new java.util.ArrayList<>();
+        this.visitedCities.add(currentCity);
+        this.path = new ArrayList<>();
+        this.cost = 0;
     }
 
-    // Getters
+    // -------------- Getters --------------
 
-    /**
-     * 
-     * @return
-     */
-    public ArrayList<City> visitedCities()
-    {
-        return this.visitedCities ;
+    public ArrayList<City> visitedCities() {
+        return this.visitedCities;
     }
 
-    /**
-     * 
-     * @return
-     */
-    public City currenCity ()
-    {
-        return this.currentCity ;
+    public City currentCity() {
+        return this.currentCity;
     }
 
-    /**
-     * Retruns an ArrayList of cities that have not been visited yet
-     * @param Cities
-     * @return
-     */
-    public ArrayList<City> actions(ArrayList <City> cities)
-    {
+    public ArrayList<City> actions(ArrayList<City> cities) {
         ArrayList<City> res = new ArrayList<>(cities);
-        res.removeAll(this.visitedCities) ;
-        res.remove(currentCity) ;
+        res.removeAll(this.visitedCities);
+        res.remove(currentCity);
         return res;
     }
 
-    /**
-     * 
-     * @return
-     */
-    public State succession(State state, City cityToVisit)
-    {
-        ArrayList<City> newVisitedCities = new ArrayList<>(state.visitedCities()) ;
-        newVisitedCities.add(cityToVisit) ;
-        return new State(cityToVisit, newVisitedCities) ;
+    public State succession(State state, City cityToVisit, ArrayList<Integer> newPath, double stepCost) {
+        ArrayList<City> newVisitedCities = new ArrayList<>(state.visitedCities());
+        newVisitedCities.add(cityToVisit);
+        return new State(cityToVisit, newVisitedCities, newPath, state.cost + stepCost);
     }
 
-    /**
-     * 
-     */
     @Override
-    public String toString()
-    {
-        return "Current City: " + this.currentCity.name() + ", Visited Cities: " + this.visitedCities.size() ;
+    public String toString() {
+        return "Current City: " + this.currentCity.name() + ", Visited Cities: " + this.visitedCities.size();
     }
 }

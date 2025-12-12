@@ -1,6 +1,6 @@
 package search;
-import app.Problem;
 
+import app.Problem;
 
 import model.Node;
 import model.State;
@@ -9,29 +9,24 @@ import algorithm.Kruskal;
 
 import java.util.Stack;
 
-public class ResearchAlgo
-{
+public class ResearchAlgo {
     // DFS modifier
 
-    public static Node depthFirstSearch(Problem problem)
-    {
+    public static Node depthFirstSearch(Problem problem) {
         // Initialize the stack with the initial state
         Stack<Node> stack = new Stack<>();
-        stack.push( new Node(problem.initialState() , null) );
+        stack.push(new Node(problem.initialState(), null));
 
-        while (!stack.isEmpty())
-        {
+        while (!stack.isEmpty()) {
             Node currentNode = stack.pop();
 
             // Check if the current state is a goal state
-            if (problem.isGoalState(currentNode.state()))
-            {
+            if (problem.isGoalState(currentNode.state())) {
                 return currentNode; // Return the solution node
             }
 
             // Expand the current node and add its children to the stack
-            for (City city : currentNode.state().actions(problem.cities()))
-            {
+            for (City city : currentNode.state().actions(problem.cities())) {
                 State newState = new State(city, currentNode.state().visitedCities());
 
                 Node childNode = new Node(newState, currentNode);

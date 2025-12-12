@@ -30,7 +30,8 @@ public class Kruskal {
         return totalWeight;
     }
 
-    // classe utilisé lors du calcul du MST pour estimer si deux sommets appartiennent au même composant connexe
+    // classe utilisé lors du calcul du MST pour estimer si deux sommets
+    // appartiennent au même composant connexe
     static class DisjointSet {
         int[] parent, rank;
 
@@ -53,8 +54,10 @@ public class Kruskal {
             int rootY = find(y);
 
             if (rootX != rootY) {
-                if (rank[rootX] < rank[rootY]) parent[rootX] = rootY;
-                else if (rank[rootX] > rank[rootY]) parent[rootY] = rootX;
+                if (rank[rootX] < rank[rootY])
+                    parent[rootX] = rootY;
+                else if (rank[rootX] > rank[rootY])
+                    parent[rootY] = rootX;
                 else {
                     parent[rootY] = rootX;
                     rank[rootX]++;

@@ -5,26 +5,23 @@ import model.State;
 
 import java.util.ArrayList;
 
-
 /**
  * 
  */
-public class Problem
-{
-    private ArrayList<City> cities ;
-    private City startCity ;
-    
-    public Problem ( ArrayList<City> cities , City startCity )
-    {
-        this.cities = cities ;
-        this.startCity = startCity ;
+public class Problem {
+    private ArrayList<City> cities;
+    private City startCity;
+
+    public Problem(ArrayList<City> cities, City startCity) {
+        this.cities = cities;
+        this.startCity = startCity;
     }
+
     /**
      * 
      * @return
      */
-    public State initialState()
-    {
+    public State initialState() {
         return new State(this.startCity);
     }
 
@@ -32,8 +29,7 @@ public class Problem
      * 
      * @return
      */
-    public ArrayList<City> cities()
-    {
+    public ArrayList<City> cities() {
         return new ArrayList<>(this.cities);
     }
 
@@ -42,10 +38,8 @@ public class Problem
      * @param state
      * @return
      */
-    public boolean isGoalState(State state)
-    {
-        return ( state.visitedCities().size() == this.cities.size() ) ;
+    public boolean isGoalState(State state) {
+        return (state.visitedCities().size() == this.cities.size());
     }
-    
-    
+
 }
