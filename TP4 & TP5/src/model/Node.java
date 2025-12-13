@@ -38,6 +38,15 @@ public class Node {
         // state.goalCity().coordonates() ) ;
     }
 
+    public Node(State state, Node parent, double h) {
+        this(state, parent);
+        this.h = h;
+    }
+
+    public void setH(double h) {
+        this.h = h;
+    }
+
     // ------------- Getters --------------
 
     public double g() {
