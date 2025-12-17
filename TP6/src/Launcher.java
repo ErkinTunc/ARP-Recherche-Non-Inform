@@ -1,5 +1,13 @@
+
 /**
  * TP6 - Game Launcher and Menu System
+ * 
+ * Compilation : 
+ * javac -d build src/*.java
+ * 
+ * Execution : 
+ * java -cp build Launcher
+ * 
  */
 
 import java.io.IOException;
@@ -23,13 +31,15 @@ public class Launcher {
         System.out.print("Choice: ");
 
         String input = System.console().readLine();
-        
+
         if (input.equals("1")) {
             startingMenu();
         } else if (input.equals("2")) {
             this.game = Game.loadGame();
-            if (this.game != null) runGameLoop();
-            else mainMenu();
+            if (this.game != null)
+                runGameLoop();
+            else
+                mainMenu();
         } else if (input.equals("3")) {
             System.exit(0);
         } else {
@@ -45,7 +55,7 @@ public class Launcher {
         System.out.print("Choice: ");
 
         String choice = System.console().readLine();
-        
+
         if (choice.equals("3")) {
             mainMenu();
             return;
@@ -74,11 +84,12 @@ public class Launcher {
     }
 
     /**
-     * Runs the game. If play() returns false, it means user paused -> Show InGame Menu.
+     * Runs the game. If play() returns false, it means user paused -> Show InGame
+     * Menu.
      */
     public void runGameLoop() {
         boolean gameFinished = this.game.play();
-        
+
         if (gameFinished) {
             System.out.println("Press Enter to return to Main Menu...");
             System.console().readLine();
