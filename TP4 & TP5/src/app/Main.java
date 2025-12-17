@@ -11,10 +11,10 @@ import search.*;
 import algorithm.*;
 
 // -------------------- HOW TO RUN -------------------
+
 // Go to TP4 folder in terminal
 //---------------------------------------------------
 
-// WINDOWS
 // Compile in to build :      javac -d build src\algorithm\*.java src\model\*.java src\search\*.java src\app\*.java
 // Run from bin folder :      java -cp build app.Main
 //---------------------------------------------------
@@ -44,6 +44,7 @@ public class Main {
         Problem problem = new Problem(cities, startCity);
 
         Node solutionNode = ResearchAlgo.depthFirstSearch(problem);
+
         if (solutionNode != null) {
             System.out.println("Solution found!");
 
@@ -58,6 +59,38 @@ public class Main {
             }
         } else {
             System.out.println("No solution found.");
+        }
+
+        // -------------- A* Search --------------
+        System.out.println("\n---------------------------------------------------");
+        System.out.println("Starting A* Search...");
+        Node aStarSolution = ResearchAlgo.aStar(problem);
+
+        if (aStarSolution != null) {
+            System.out.println("A* Solution found!");
+            System.out.println("Cost of solution: " + aStarSolution.state().g());
+            System.out.println("Path to solution:");
+            for (City city : aStarSolution.state().visitedCities()) {
+                System.out.println(city.id() + " at " + city.coordonates().x() + ", " + city.coordonates().y());
+            }
+        } else {
+            System.out.println("No A* solution found.");
+        }
+
+        // -------------- Branch & Bound Search --------------
+        System.out.println("\n---------------------------------------------------");
+        System.out.println("Starting Branch & Bound Search...");
+        Node bbSolution = ResearchAlgo.branchBoundSearch(problem);
+
+        if (bbSolution != null) {
+            System.out.println("Branch & Bound Solution found!");
+            System.out.println("Cost of solution: " + bbSolution.state().g());
+            System.out.println("Path to solution:");
+            for (City city : bbSolution.state().visitedCities()) {
+                System.out.println(city.id() + " at " + city.coordonates().x() + ", " + city.coordonates().y());
+            }
+        } else {
+            System.out.println("No Branch & Bound solution found.");
         }
     }
 }
